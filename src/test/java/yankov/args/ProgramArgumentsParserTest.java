@@ -3,13 +3,13 @@ package yankov.args;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ArgumentParserTest {
+public class ProgramArgumentsParserTest {
     @Test
     public void parse_NoArguments_DefaultArguments() {
         String[] args = new String[]{};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("input.txt", appArgs.getInput());
         Assert.assertEquals("output.txt", appArgs.getOutput());
@@ -24,7 +24,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("input.txt", appArgs.getInput());
         Assert.assertEquals("output.txt", appArgs.getOutput());
@@ -39,7 +39,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"-i", "-o", "arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("input.txt", appArgs.getInput());
         Assert.assertEquals("output.txt", appArgs.getOutput());
@@ -54,7 +54,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"-iProvidedInput", "-oProvidedOutput", "arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("ProvidedInput", appArgs.getInput());
         Assert.assertEquals("ProvidedOutput", appArgs.getOutput());
@@ -69,7 +69,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"--input", "--output", "arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("input.txt", appArgs.getInput());
         Assert.assertEquals("output.txt", appArgs.getOutput());
@@ -84,7 +84,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"--input=ProvidedInput", "--output=ProvidedOutput", "arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("ProvidedInput", appArgs.getInput());
         Assert.assertEquals("ProvidedOutput", appArgs.getOutput());
@@ -99,7 +99,7 @@ public class ArgumentParserTest {
         String[] args = new String[]{"-f", "--flag-two", "arg1", "arg2"};
 
         AppArgs appArgs = new AppArgs();
-        Assert.assertTrue(ArgumentParser.parse(args, appArgs));
+        Assert.assertTrue(ProgramArgumentsParser.parse(args, appArgs));
 
         Assert.assertEquals("input.txt", appArgs.getInput());
         Assert.assertEquals("output.txt", appArgs.getOutput());

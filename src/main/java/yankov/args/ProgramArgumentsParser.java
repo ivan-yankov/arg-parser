@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ArgumentParser {
+public class ProgramArgumentsParser {
     public static boolean parse(String[] args, Object programArguments) {
         return Arrays
                 .stream(programArguments.getClass().getDeclaredFields())
@@ -61,11 +61,11 @@ public class ArgumentParser {
 
     private static Optional<String> getOptionValue(String[] args, String shortName, String longName) {
         Optional<String> fromShort = Arrays.stream(args)
-                .filter(ArgumentParser::isShortOption)
+                .filter(ProgramArgumentsParser::isShortOption)
                 .filter(x -> getOptionName(x, false).equals(shortName))
                 .findFirst();
         Optional<String> fromLong = Arrays.stream(args)
-                .filter(ArgumentParser::isLongOption)
+                .filter(ProgramArgumentsParser::isLongOption)
                 .filter(x -> getOptionName(x, true).equals(longName))
                 .findFirst();
         return fromShort.isPresent()
@@ -82,10 +82,10 @@ public class ArgumentParser {
 
     private static boolean isOptionFlagPresent(String[] args, String shortName, String longName) {
         boolean presentShort = Arrays.stream(args)
-                .filter(ArgumentParser::isShortOption)
+                .filter(ProgramArgumentsParser::isShortOption)
                 .anyMatch(x -> getOptionName(x, false).equals(shortName));
         boolean presentLong = Arrays.stream(args)
-                .filter(ArgumentParser::isLongOption)
+                .filter(ProgramArgumentsParser::isLongOption)
                 .anyMatch(x -> getOptionName(x, true).equals(longName));
         return presentShort || presentLong;
     }
